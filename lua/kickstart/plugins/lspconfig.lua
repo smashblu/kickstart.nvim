@@ -1,4 +1,12 @@
 -- LSP Plugins
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  virtual_text = false,
+  signs = true,
+  underline = true,
+  update_on_insert = false,
+})
+vim.o.updatetime = 250
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 return {
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
